@@ -1,27 +1,29 @@
 require "sinatra"
 require "sinatra/reloader" if development?
-require "pg"
+require "active_record"
 
 ActiveRecord::Base.establish_connection(
   adapter: "postgresql",
   database: "photo_gallery"
   )
-database = PG.connect({ dbname: "photo_gallery"})
+
+class Gallery < ActiveRecord::Base
+end
+
+class Image < ActiveRecord::Base
+end
 
 get "/" do
-  gallery_result = database.exec_params("SELECT name FROM galleries") 
-  @gallery_names = gallery_result.map do |gallery|
-    gallery["name"]
-  end 
-
+  @galleries = Gallery.all 
   erb :home
 end
 
 get "/galleries/:id" do
   id = params[:id]
-  name_result = database.exec_params("SELECT name FROM galleries WHERE id = $1", [id])
-  @name = name_result.first["name"]
-  @images = []
+  @galleries = Gallery.find(id)
+  @name = Gallery.name
+
+  @images = Image.where(gallery_id: id)
   erb :galleries
 end
 

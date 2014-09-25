@@ -1,0 +1,7 @@
+<h2>Viewing the <% @name %> gallery</h2>
+
+<ul>
+  <% @gallery_name do |image| %>
+    <img src="/<% image %>" /> 
+  <% end %>
+</ul>

@@ -1,0 +1,18 @@
+<form action="/galleries/<%= @gallery.id %>/image/new" method="POST">
+
+  <label for="image_name">Image Name</label>
+  <input type="text" name="image[name]" value="<%= @image.name %>" />
+
+  <label for="image_URL">Image URL</label>
+  <input type="text" name="image[url]" value="<%= @image.url %>" />
+
+  <br />
+
+  <input type="submit" value="Update Gallery" />
+</form>
+
+
+
+
+
+

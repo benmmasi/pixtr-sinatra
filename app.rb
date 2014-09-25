@@ -8,6 +8,7 @@ ActiveRecord::Base.establish_connection(
   )
 
 class Gallery < ActiveRecord::Base
+  has_many :images
 end
 
 class Image < ActiveRecord::Base
@@ -54,9 +55,23 @@ delete "/galleries/:id" do
   redirect ("/")
 end
 
+get "/galleries/:id" do
+  id  = params[:id]
 
+  @gallery = Gallery.find(id)
+  erb :gallery
+end
 
+get "/galleries/:id/image/new" do
+  id = params[:id]
+  @gallery = Gallery.find(id)
+  erb :image_new
+end
 
-
-
+post "/galleries/:id/image/new" do
+  @galleries = Gallery.find(params[:id])
+  image = params[:image]
+  @galleries.images.create(image)
+  redirect(to("/galleries/#{@galleries.id}"))
+end
 

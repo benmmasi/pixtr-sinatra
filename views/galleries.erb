@@ -7,7 +7,8 @@
   <% end %>
 </ul>
 
-<a href="/galleries/<%= @galleries.id %>/edit">Edit Gallery</a>
+<a href="/galleries/<%= @galleries.id %>/edit">Edit Gallery</a><br />
+<a href="/galleries/<%= @galleries.id %>/image/new">Add Image</a> 
 
 <form action="/galleries/<%= @galleries.id %>" method="POST" />
   <input type="hidden" name="_method" value="DELETE" />

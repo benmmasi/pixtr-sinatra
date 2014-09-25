@@ -1,7 +1,10 @@
-<h2>Viewing the <%= @name %> gallery</h2>
+<h2>Viewing the <%= @galleries.name %> gallery</h2>
 
 <ul>
   <% @images.each do |image| %>
-    <img src="<%= image.url %>" /> 
+    <img src="<%= image.url %>" />
+    <li><a href="galleries/edit"><Edit Gallery></li>
   <% end %>
 </ul>
+
+<a href="/galleries/<%= params[:id] %>/edit">Edit Gallery</a> 

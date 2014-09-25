@@ -45,17 +45,14 @@ patch "/galleries/:id" do
   gallery = Gallery.find(id)
   gallery.update(params[:id])
   redirect(to("/galleries/#{id}"))
-  erb :edit
 end
 
-gets "galleries/:id/" do
-  id = params[:id]o
-  @gallery = Gallery.find(id)
-  erb :galery
+delete "/galleries/:id" do
+  id = params[:id]
+  gallery = Gallery.find(id)
+  gallery.destroy
+  redirect ("/")
 end
-
-
-
 
 
 

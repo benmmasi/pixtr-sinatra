@@ -1,9 +1,13 @@
 <h2>Viewing the <%= @galleries.name %> gallery</h2>
 
 <ul>
-  <% @images.each do |image| %>
+  <% @galleries.images.each do |image| %>
     <img src="<%= image.url %>" />
-    <li><a href="galleries/edit">Edit Gallery</a></li>
+    <a href="/galleries/<%= @galleries.id %>/image/edit">Edit Image</a>
+    <form action="/galleries/<%= @galleries.id %>/" method="POST" />
+      <input type="hidden" name="_method" value="DELETE" />
+      <input type="submit" value="Delete Image" />
+    </form>
   <% end %>
 </ul>
 

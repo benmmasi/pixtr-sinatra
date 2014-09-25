@@ -75,3 +75,10 @@ post "/galleries/:id/image/new" do
   redirect(to("/galleries/#{@galleries.id}"))
 end
 
+delete "/galleries/:id/image" do
+  id = params[:id]
+  gallery = Gallery.find(id)
+  image = gallery.image.find(id)
+  image.destroy
+  redirect("/galleries/:id")
+end

@@ -3,8 +3,13 @@
 <ul>
   <% @images.each do |image| %>
     <img src="<%= image.url %>" />
-    <li><a href="galleries/edit"><Edit Gallery></li>
+    <li><a href="galleries/edit">Edit Gallery</a></li>
   <% end %>
 </ul>
 
-<a href="/galleries/<%= params[:id] %>/edit">Edit Gallery</a> 
+<a href="/galleries/<%= @galleries.id %>/edit">Edit Gallery</a>
+
+<form action="/galleries/<%= @galleries.id %>" method="POST" />
+  <input type="hidden" name="_method" value="DELETE" />
+  <input type="submit" value="Delete Gallery" />
+</form>
